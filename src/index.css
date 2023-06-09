@@ -122,6 +122,7 @@ button{
   border-radius: 10px;
   box-shadow: 0px 0px 10px #888888;
   height: auto;
+  min-height: 130px;
   align-items: center;
 }
 .cartHead{
