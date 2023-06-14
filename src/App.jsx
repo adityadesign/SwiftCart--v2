@@ -4,7 +4,7 @@ import ProductListing from "./assets/ProductListing"
 import Cart from "./assets/Cart"
 import ProductDetails from "./assets/ProductDetails"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
 export default function App(){
   const [dataArr, setDataArr] = useState([])
@@ -12,12 +12,20 @@ export default function App(){
   const [product, setProduct] = useState()
 
   useEffect(()=>{
+    let isCancelled = false
       fetch('https://fakestoreapi.com/products')
         .then(res => res.json())
-        .then(data => setDataArr(data))
+        .then(data => {
+          if(!isCancelled){
+            setDataArr(data)
+          }
+      })
+      return () => {
+        isCancelled = true
+      }
   },[])
 
-  function addToCart(product){
+  const addToCart = (product) => {
     const existingItem = cartArr.find(item => item.id === product.id)
     if(existingItem){
       setCartArr(cartArr.map(item => {
@@ -28,13 +36,13 @@ export default function App(){
     }
   }
 
-  function handleAddClick(product){
+  const handleAddClick = (product) => {
     setCartArr(cartArr.map(item => {
       return item.id === product.id ? {...item, quantity : item.quantity + 1} : item
     }))
   }
 
-  function handleRemoveClick(product){
+  const handleRemoveClick = (product) => {
     if(product.quantity>1){
       setCartArr(cartArr.map(item => {
         return item.id === product.id ? {...item, quantity : item.quantity - 1} : item
@@ -44,7 +52,7 @@ export default function App(){
     }
   }
 
-  function renderProducts(arr){
+  const renderProducts = (arr) =>{
     return arr.map(item => {
         return (
             <div className="product" key={item.id}>
@@ -62,10 +70,11 @@ export default function App(){
       })
   }
 
-  function getSelectedProduct(Id){
+  const getSelectedProduct = (Id) => {
     setProduct(dataArr.find(item => item.id === Id))
   }
-  function handleChange(e){
+
+  const handleChange = (e) => {
     if(e.target.value === 'all'){
       fetch('https://fakestoreapi.com/products')
         .then(res => res.json())
@@ -76,17 +85,22 @@ export default function App(){
         .then(data => setDataArr(data))
     }
   }
-  function handleHome(){
+
+  const handleHome = () => {
     fetch('https://fakestoreapi.com/products')
         .then(res => res.json())
         .then(data => setDataArr(data))
   }
+
   return (
     <>
       <nav className="navbar">
         <span className="brand">SWIFTCART</span>
         <Link to='/' onClick={handleHome} className="navHome">Home</Link>
-        <Link to='/cart' className="navCart">Cart</Link>
+        <Link to='/cart' className="navCart">
+          {cartArr.length>0 ? <span className="noti">{cartArr.length}</span> : ''}
+          <FontAwesomeIcon icon={faCartShopping} size="lg" />
+        </Link>
       </nav>
       <Routes>
         <Route path="/" element={<ProductListing dataArr={dataArr} addToCart={addToCart} renderProducts={renderProducts} handleChange={handleChange}/>}/>

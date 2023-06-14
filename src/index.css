@@ -16,6 +16,22 @@ body{
   text-decoration: none;
   color: black;
 }
+.navCart{
+  position: relative;
+}
+.noti{
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  font-size: 10px;
+  text-align: center;
+  font-weight: 600;
+  background-color: red;
+  right: -10px;
+  top: -5px;
+  border: 1px solid white;
+  border-radius: 50%;
+}
 .categories{
   display: flex;
   width: 80vw;
