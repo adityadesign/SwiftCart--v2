@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom"
+import PropTypes from 'prop-types';
 
 export default function ProductDetails(props){
     const details = props.product &&
@@ -21,4 +22,9 @@ export default function ProductDetails(props){
             {details}
         </div>
     )
+}
+
+ProductDetails.propTypes = {
+    product: PropTypes.array.isRequired,
+    addToCart: PropTypes.element.isRequired,
 }

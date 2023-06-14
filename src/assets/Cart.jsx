@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
-import emptyCart from './cartEmpty.svg' 
+import PropTypes from 'prop-types';
 
 export default function Cart(props){
     let total = 0
-    const totalPrice = props.cartArr.map(item => {
-        return total += item.quantity*item.price
-    })
-
+    const totalPrice = () => {
+        props.cartArr.map(item => {
+            return total += item.quantity*item.price
+        })
+    }
+    totalPrice()
     return (
         <div className="cartList">
             <h2 className="cartHead">{props.cartArr.length>0 ? 'Your Cart Items' : 'Your cart is empty'}</h2>
@@ -44,4 +46,11 @@ export default function Cart(props){
             
         </div>
     )
+}
+
+Cart.propTypes = {
+    cartArr: PropTypes.array.isRequired,
+    handleAddClick: PropTypes.element.isRequired,
+    handleRemoveClick: PropTypes.element.isRequired,
+    clearCheckout: PropTypes.element.isRequired,
 }
