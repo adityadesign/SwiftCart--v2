@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import emptyCart from './cartEmpty.svg' 
 
 export default function Cart(props){
@@ -38,7 +39,7 @@ export default function Cart(props){
                 })}
                 <div className="hrLine"></div>
                 <div className="totalText">Total Amount <span>$ {total.toFixed(2)}</span></div>
-                <button className='checkboxBtn'>Checkout</button>
+                <Link to='/checkout' onClick={() => props.clearCheckout()}><button className='checkboxBtn'>Checkout</button></Link>
             </div>}
             
         </div>

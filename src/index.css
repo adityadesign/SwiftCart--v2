@@ -178,7 +178,8 @@ button{
   background-color: rgb(255, 255, 255);
 }
 .quantitySection button:hover,
-.addtoCartButtonProduct:hover{
+.addtoCartButtonProduct:hover,
+.checkout button:hover{
   background-color: rgb(23, 23, 23);
   color: rgb(245, 237, 237);
 }
@@ -251,4 +252,32 @@ button{
   margin-left: auto;
   margin-top: 1rem;
   padding: 1rem 1.5rem;
+}
+.checkout{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  width: 80vw;
+  margin: 0 auto;
+}
+.checkout h2{
+  margin: 0.5rem;
+}
+.checkoutImg{
+  width: 200px;
+  margin-left: 1rem;
+}
+.checkout h3{
+  margin: 1rem 0 0;
+}
+.checkout p{
+  text-align: center;
+}
+.checkout button{
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid black;
+  font-weight: 600;
+  font-size: 1.01rem;
 }

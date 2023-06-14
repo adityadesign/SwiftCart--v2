@@ -3,6 +3,7 @@ import {Link, Route, Routes} from "react-router-dom"
 import ProductListing from "./assets/ProductListing"
 import Cart from "./assets/Cart"
 import ProductDetails from "./assets/ProductDetails"
+import Checkout from './assets/Checkout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
@@ -92,6 +93,10 @@ export default function App(){
         .then(data => setDataArr(data))
   }
 
+  const clearCheckout = () => {
+    setCartArr([])
+  }
+
   return (
     <>
       <nav className="navbar">
@@ -105,7 +110,8 @@ export default function App(){
       <Routes>
         <Route path="/" element={<ProductListing dataArr={dataArr} addToCart={addToCart} renderProducts={renderProducts} handleChange={handleChange}/>}/>
         <Route path="/product/:productId" element={<ProductDetails dataArr={dataArr} product={product} addToCart={addToCart}/>}/>
-        <Route path="/cart" element={<Cart cartArr={cartArr} handleAddClick={handleAddClick} handleRemoveClick={handleRemoveClick}/>}/>
+        <Route path="/cart" element={<Cart cartArr={cartArr} handleAddClick={handleAddClick} handleRemoveClick={handleRemoveClick} clearCheckout={clearCheckout}/>}/>
+        <Route path="/checkout" element={<Checkout/>}/>
       </Routes>
     </>
   )
