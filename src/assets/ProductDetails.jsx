@@ -23,8 +23,3 @@ export default function ProductDetails(props){
         </div>
     )
 }
-
-ProductDetails.propTypes = {
-    product: PropTypes.array.isRequired,
-    addToCart: PropTypes.element.isRequired,
-}

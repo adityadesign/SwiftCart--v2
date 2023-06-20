@@ -47,10 +47,3 @@ export default function Cart(props){
         </div>
     )
 }
-
-Cart.propTypes = {
-    cartArr: PropTypes.array.isRequired,
-    handleAddClick: PropTypes.element.isRequired,
-    handleRemoveClick: PropTypes.element.isRequired,
-    clearCheckout: PropTypes.element.isRequired,
-}

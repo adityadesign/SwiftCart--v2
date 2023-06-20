@@ -19,9 +19,3 @@ export default function ProductListing(props){
         </>
     )
 }
-
-ProductListing.propTypes = {
-    handleChange: PropTypes.element.isRequired,
-    renderProducts: PropTypes.element.isRequired,
-    dataArr: PropTypes.array.isRequired
-}
